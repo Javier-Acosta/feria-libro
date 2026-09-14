@@ -1,0 +1,39 @@
+schema: spec-driven
+
+context: |
+  Aplicación web de la Feria del Libro desarrollada con Next.js 16, TypeScript,
+  React y Tailwind CSS. El idioma de la interfaz y de los artefactos es español.
+  PocketBase provee autenticación, base de datos SQLite y almacenamiento de medios.
+  La primera entrega prioriza una web pública simple y un área protegida para que
+  personal autorizado gestione noticias, invitados, mapa y agenda del evento.
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+# Add your tech stack, conventions, style guides, domain knowledge, etc.
+# Example:
+#   context: |
+#     Tech stack: TypeScript, React, Node.js
+#     We use conventional commits
+#     Domain: e-commerce platform
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

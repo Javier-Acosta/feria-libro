@@ -1,0 +1,5 @@
+"use client";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+export default function LoginPage() { const router = useRouter(); const [error, setError] = useState(""); async function login(event: FormEvent<HTMLFormElement>) { event.preventDefault(); const form = new FormData(event.currentTarget); const response = await fetch("/api/auth/login", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ email:form.get("email"), password:form.get("password") }) }); if (!response.ok) return setError((await response.json()).message); router.push("/admin"); router.refresh(); } return <main className="login"><form onSubmit={login}><p className="eyebrow blue">ADMINISTRACIÓN</p><h1>Ingresar</h1><label>Correo<input name="email" type="email" required /></label><label>Contraseña<input name="password" type="password" required /></label>{error && <p className="form-error">{error}</p>}<button>Entrar al panel →</button><Link href="/">← Volver al sitio</Link></form></main>; }
