@@ -1,7 +1,7 @@
 import { createPocketBase, fileUrl } from "./pocketbase";
 
 export type NewsItem = { id: string; title: string; summary: string; content: string; published_on: string; image?: string; collectionId: string };
-export type Guest = { id: string; name: string; bio: string; participation?: string; photo?: string; collectionId: string };
+export type Guest = { id: string; name: string; presentation_date?: string; bio: string; participation?: string; photo?: string; collectionId: string };
 export type ScheduleEntry = { id: string; event_date: string; event_time: string; title: string; venue: string; expand?: { guests?: Guest[] } };
 export type Reel = { id: string; title: string; url: string; image?: string; collectionId: string };
 export type Banner = { id: string; title: string; image: string; collectionId: string };

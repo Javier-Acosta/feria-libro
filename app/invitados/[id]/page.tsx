@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PresentationDate } from "@/components/presentation-date";
 import { notFound } from "next/navigation";
 import { createPocketBase } from "@/lib/pocketbase";
 import { fileUrl, type Guest } from "@/lib/content";
@@ -23,7 +24,7 @@ export default async function GuestPage({ params }: { params: Promise<{ id: stri
     <article className="news-detail">
       <Link className="news-back" href="/#invitados">← Volver a invitados</Link>
       <p className="eyebrow orange">VOCES INVITADAS</p>
-      <h1>{guest.name}</h1>
+      <PresentationDate value={guest.presentation_date} /><h1>{guest.name}</h1>
       {guest.participation && <p className="news-detail-summary">{guest.participation}</p>}
       {guest.photo && <img className="guest-detail-photo" src={fileUrl(guest.collectionId, guest.id, guest.photo)} alt={guest.name} />}
       <div className="news-body" dangerouslySetInnerHTML={{ __html: guest.bio }} />
