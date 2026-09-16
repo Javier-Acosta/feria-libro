@@ -1,6 +1,22 @@
-import { NextRequest, NextResponse } from "next/server";
 import { getAdminClient } from "@/lib/admin";
-const allowed = ["news", "guests", "schedule_entries", "venue_maps", "banners", "reels"];
-async function authorize(collection: string) { const pb = await getAdminClient(); return pb && allowed.includes(collection) ? pb : null; }
-export async function PATCH(request: NextRequest, context: RouteContext<"/api/admin/[collection]/[id]">) { const { collection, id } = await context.params; const pb = await authorize(collection); if (!pb) return NextResponse.json({ message:"No autorizado" }, { status:401 }); try { return NextResponse.json(await pb.collection(collection).update(id, await request.formData())); } catch { return NextResponse.json({ message:"No se pudo guardar." }, { status:400 }); } }
-export async function DELETE(_: NextRequest, context: RouteContext<"/api/admin/[collection]/[id]">) { const { collection, id } = await context.params; const pb = await authorize(collection); if (!pb) return NextResponse.json({ message:"No autorizado" }, { status:401 }); await pb.collection(collection).delete(id); return NextResponse.json({ ok:true }); }
+import { isCollection } from "@/lib/admin-fields";
+import { editableForm, validateGuestRelations } from "@/lib/admin-content";
+
+export async function PATCH(request: Request, context: RouteContext<"/api/admin/[collection]/[id]">) {
+  const { collection, id } = await context.params;
+  const pb = await getAdminClient();
+  if (!pb || !isCollection(collection)) return Response.json({ message: "No autorizado." }, { status: 401 });
+  try {
+    const data = editableForm(collection, await request.formData());
+    await validateGuestRelations(pb, collection, data);
+    return Response.json(await pb.collection(collection).update(id, data));
+  } catch { return Response.json({ message: "No se pudo guardar. Revisá los campos, el enlace y el archivo seleccionado." }, { status: 400 }); }
+}
+
+export async function DELETE(_: Request, context: RouteContext<"/api/admin/[collection]/[id]">) {
+  const { collection, id } = await context.params;
+  const pb = await getAdminClient();
+  if (!pb || !isCollection(collection)) return Response.json({ message: "No autorizado." }, { status: 401 });
+  try { await pb.collection(collection).delete(id); return Response.json({ ok: true }); }
+  catch { return Response.json({ message: "No se pudo eliminar el contenido." }, { status: 400 }); }
+}

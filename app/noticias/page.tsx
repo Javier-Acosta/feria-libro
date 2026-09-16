@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { createPocketBase } from "@/lib/pocketbase";
 import { fileUrl, type NewsItem } from "@/lib/content";
+import { contentSort } from "@/lib/admin-fields";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Noticias | Feria del Libro" };
@@ -8,13 +10,10 @@ export const metadata = { title: "Noticias | Feria del Libro" };
 export default async function NewsIndex() {
   const news = await createPocketBase().collection("news").getFullList<NewsItem>({
     filter: "published = true",
-    sort: "-created,-id",
+    sort: contentSort("news"),
   });
   return <main>
-    <nav className="nav" aria-label="Navegación principal">
-      <Link href="/" className="brand">FERIA<br />DEL LIBRO</Link>
-      <Link href="/">Volver al inicio</Link>
-    </nav>
+    <SiteHeader />
     <section className="section news-section news-index">
       <p className="eyebrow pink">AL DÍA</p>
       <h1>Noticias de la Feria</h1>
@@ -28,5 +27,6 @@ export default async function NewsIndex() {
         </Link>
       </article>)}</div> : <p className="empty">Las novedades diarias aparecerán aquí durante el evento.</p>}
     </section>
+    <SiteFooter />
   </main>;
 }

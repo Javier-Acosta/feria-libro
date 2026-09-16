@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPocketBase } from "@/lib/pocketbase";
 import { fileUrl, type NewsItem } from "@/lib/content";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const dynamic = "force-dynamic";
 
@@ -16,12 +17,9 @@ export default async function NewsPage({ params }: { params: Promise<{ id: strin
   if (!item) notFound();
 
   return <main>
-    <nav className="nav" aria-label="Navegación principal">
-      <Link href="/" className="brand">FERIA<br />DEL LIBRO</Link>
-      <Link href="/#noticias">Todas las noticias</Link>
-    </nav>
+    <SiteHeader />
     <article className="news-detail">
-      <Link className="news-back" href="/#noticias">← Volver a noticias</Link>
+      <Link className="news-back" href="/noticias/">← Volver a noticias</Link>
       <p className="eyebrow pink">NOTICIAS DE LA FERIA</p>
       <h1>{item.title}</h1>
       <time dateTime={new Date(item.published_on).toISOString()}>{new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long", year: "numeric", timeZone: "America/Argentina/Buenos_Aires" }).format(new Date(item.published_on))}</time>
@@ -29,5 +27,6 @@ export default async function NewsPage({ params }: { params: Promise<{ id: strin
       {item.image && <img className="news-detail-image" src={fileUrl(item.collectionId, item.id, item.image)} alt={item.title} />}
       <div className="news-body" dangerouslySetInnerHTML={{ __html: item.content }} />
     </article>
+    <SiteFooter />
   </main>;
 }
