@@ -1,0 +1,32 @@
+import Link from "next/link";
+import { createPocketBase } from "@/lib/pocketbase";
+import { fileUrl, type NewsItem } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
+export const metadata = { title: "Noticias | Feria del Libro" };
+
+export default async function NewsIndex() {
+  const news = await createPocketBase().collection("news").getFullList<NewsItem>({
+    filter: "published = true",
+    sort: "-published_on",
+  });
+  return <main>
+    <nav className="nav" aria-label="Navegación principal">
+      <Link href="/" className="brand">FERIA<br />DEL LIBRO</Link>
+      <Link href="/">Volver al inicio</Link>
+    </nav>
+    <section className="section news-section news-index">
+      <p className="eyebrow pink">AL DÍA</p>
+      <h1>Noticias de la Feria</h1>
+      {news.length ? <div className="news-grid">{news.map(item => <article className="news-card" key={item.id}>
+        <Link className="news-card-link" href={`/noticias/${item.id}`} aria-label={`Leer noticia: ${item.title}`}>
+          {item.image && <img src={fileUrl(item.collectionId, item.id, item.image)} alt="" loading="lazy" />}
+          <time dateTime={new Date(item.published_on).toISOString()}>{new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(item.published_on))}</time>
+          <h3>{item.title}</h3>
+          <p>{item.summary}</p>
+          <span className="news-read-more">Leer noticia →</span>
+        </Link>
+      </article>)}</div> : <p className="empty">Las novedades diarias aparecerán aquí durante el evento.</p>}
+    </section>
+  </main>;
+}
