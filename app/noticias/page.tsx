@@ -8,7 +8,7 @@ export const metadata = { title: "Noticias | Feria del Libro" };
 export default async function NewsIndex() {
   const news = await createPocketBase().collection("news").getFullList<NewsItem>({
     filter: "published = true",
-    sort: "-published_on",
+    sort: "-created,-id",
   });
   return <main>
     <nav className="nav" aria-label="Navegación principal">

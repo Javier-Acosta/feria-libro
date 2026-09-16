@@ -14,7 +14,7 @@ async function safely<T>(request: () => Promise<T>, fallback: T): Promise<T> {
 export async function getPublicContent() {
   const pb = createPocketBase();
   const [news, guests, schedule, maps, banners, reels] = await Promise.all([
-    safely(() => pb.collection("news").getFullList<NewsItem>({ sort: "-published_on" }), []),
+    safely(() => pb.collection("news").getList<NewsItem>(1, 6, { filter: "published = true", sort: "-created,-id" }).then(result => result.items), []),
     safely(() => pb.collection("guests").getFullList<Guest>({ sort: "name" }), []),
     safely(() => pb.collection("schedule_entries").getFullList<ScheduleEntry>({ sort: "event_date,event_time", expand: "guests" }), []),
     safely(() => pb.collection("venue_maps").getFullList<VenueMap>({ sort: "-updated" }), []),
