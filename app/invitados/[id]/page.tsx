@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { createPocketBase } from "@/lib/pocketbase";
 import { fileUrl, type Guest } from "@/lib/content";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { sanitizeRichText } from "@/lib/rich-text";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,7 @@ export default async function GuestPage({ params }: { params: Promise<{ id: stri
       <PresentationDate value={guest.presentation_date} /><h1>{guest.name}</h1>
       {guest.participation && <p className="news-detail-summary">{guest.participation}</p>}
       {guest.photo && <img className="guest-detail-photo" src={fileUrl(guest.collectionId, guest.id, guest.photo)} alt={guest.name} />}
-      <div className="news-body" dangerouslySetInnerHTML={{ __html: guest.bio }} />
+      <div className="news-body" dangerouslySetInnerHTML={{ __html: sanitizeRichText(guest.bio) }} />
     </article>
     <SiteFooter />
   </main>;

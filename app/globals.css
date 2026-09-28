@@ -31,6 +31,8 @@
 .event-info p{margin:0;display:grid;gap:8px}.event-info strong{color:var(--accent,#ED8023)}.event-info span{white-space:pre-line;line-height:1.6}
 .guest-all-link{display:flex;justify-content:center;margin:0 0 32px}
 .content-form .editor-fields{border:0;padding:0;margin:0;display:grid;gap:18px;min-width:0}
+.content-form textarea.rich-text-editor{min-height:260px;line-height:1.55}
+.field-help{display:block;color:#62626a;font-size:12px;font-weight:400;line-height:1.45;text-transform:none}
 .content-form fieldset:disabled{opacity:.7}
 .content-preview{width:100%;height:620px;border:1px solid #d8d8df;background:#fff;border-radius:8px}
 .preview-panel{display:grid;gap:18px;margin:24px 0}

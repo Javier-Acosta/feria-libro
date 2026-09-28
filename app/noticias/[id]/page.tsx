@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createPocketBase } from "@/lib/pocketbase";
 import { fileUrl, type NewsItem } from "@/lib/content";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { sanitizeRichText } from "@/lib/rich-text";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,7 @@ export default async function NewsPage({ params }: { params: Promise<{ id: strin
       <time dateTime={new Date(item.published_on).toISOString()}>{new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long", year: "numeric", timeZone: "America/Argentina/Buenos_Aires" }).format(new Date(item.published_on))}</time>
       <p className="news-detail-summary">{item.summary}</p>
       {item.image && <img className="news-detail-image" src={fileUrl(item.collectionId, item.id, item.image)} alt={item.title} />}
-      <div className="news-body" dangerouslySetInnerHTML={{ __html: item.content }} />
+      <div className="news-body" dangerouslySetInnerHTML={{ __html: sanitizeRichText(item.content) }} />
     </article>
     <SiteFooter />
   </main>;
