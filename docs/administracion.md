@@ -2,7 +2,7 @@
 
 ## Invitados
 
-La portada muestra hasta seis invitados. **Ver todos** lleva a `/invitados/`,
+La portada muestra hasta nueve invitados. **Ver todos** lleva a `/invitados/`,
 que muestra todos los perfiles publicados. Cada tarjeta abre el perfil completo.
 
 ## Publicar y organizar contenido
@@ -14,7 +14,7 @@ que muestra todos los perfiles publicados. Cada tarjeta abre el perfil completo.
 - **Prioridad de aparición** permite destacar contenido: un número mayor aparece
   antes. Cero mantiene el orden normal. Entre noticias o invitados con la misma
   prioridad, se muestra primero el registro más reciente. La portada conserva
-  un máximo de seis noticias y seis invitados.
+  un máximo de seis noticias y nueve invitados.
 - La agenda respeta primero la fecha y la hora; la prioridad resuelve empates.
 - Entre banners o mapas con igual prioridad se usa el último actualizado.
 
