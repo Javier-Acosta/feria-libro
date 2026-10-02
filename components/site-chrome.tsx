@@ -11,7 +11,6 @@ export async function SiteHeader({ home = false }: { home?: boolean }) {
         : settings.site_name}
     </Link>
     <div className="nav-links"><Link href="/cronograma/">Cronograma</Link><Link href="/invitados/">Invitados</Link><Link href="/noticias/">Noticias</Link><Link href="/#mapa">Mapa</Link></div>
-    <Link className="admin-link" href="/admin">Administración</Link>
   </nav>;
 }
 
@@ -21,7 +20,7 @@ export async function SiteFooter() {
     <div className="social-links">{[["Instagram", settings.instagram_url], ["Facebook", settings.facebook_url], ["YouTube", settings.youtube_url]].map(([label, value]) => {
       const url = safeWebUrl(value);
       return url ? <a key={label} href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a> : null;
-    })}</div><Link href="/admin">Acceso administración</Link>
+    })}</div>
   </footer>;
 }
 
