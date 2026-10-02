@@ -10,7 +10,7 @@ export async function SiteHeader({ home = false }: { home?: boolean }) {
         ? <img className="site-logo" src={fileUrl(settings.collectionId, settings.id, settings.logo)} alt={settings.site_name} />
         : settings.site_name}
     </Link>
-    <div className="nav-links"><Link href="/#agenda">Agenda</Link><Link href="/invitados/">Invitados</Link><Link href="/noticias/">Noticias</Link><Link href="/#mapa">Mapa</Link></div>
+    <div className="nav-links"><Link href="/cronograma/">Cronograma</Link><Link href="/invitados/">Invitados</Link><Link href="/noticias/">Noticias</Link><Link href="/#mapa">Mapa</Link></div>
     <Link className="admin-link" href="/admin">Administración</Link>
   </nav>;
 }
