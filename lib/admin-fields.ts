@@ -26,7 +26,7 @@ export const definitions: Record<string, Field[]> = {
   schedule_entries: [
     { name: "event_date", label: "Fecha", type: "date", required: true },
     { name: "event_time", label: "Hora", type: "time", required: true },
-    { name: "title", label: "Actividad", type: "text", required: true, maxLength: 100 },
+    { name: "title", label: "Actividad", type: "text", required: true, maxLength: 600 },
     { name: "venue", label: "Ubicación", type: "text", required: true },
   ],
   venue_maps: [
