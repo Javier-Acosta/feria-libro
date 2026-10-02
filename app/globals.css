@@ -40,6 +40,7 @@
 .news-body blockquote{border-left-color:#ED8023}
 .reel-placeholder{background:linear-gradient(145deg,#542063,#ED8023,#ff6b30)}
 .schedule-cta{background:#fff}.schedule-cta h2{max-width:760px}.schedule-cta-button{margin-top:0}.schedule-page h1{font-size:clamp(38px,5vw,70px);line-height:.95;letter-spacing:-.06em;margin:12px 0 48px;max-width:900px}
+.map-art{color:inherit;text-decoration:none}.map-art img{display:block;width:min(100%,360px);height:auto;max-height:260px;object-fit:contain}.map-art:focus-visible{outline:3px solid var(--orange);outline-offset:8px}
 .content-form fieldset:disabled{opacity:.7}
 .content-preview{width:100%;height:620px;border:1px solid #d8d8df;background:#fff;border-radius:8px}
 .preview-panel{display:grid;gap:18px;margin:24px 0}
