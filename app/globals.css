@@ -33,6 +33,7 @@
 .content-form .editor-fields{border:0;padding:0;margin:0;display:grid;gap:18px;min-width:0}
 .content-form textarea.rich-text-editor{min-height:260px;line-height:1.55}
 .field-help{display:block;color:#62626a;font-size:12px;font-weight:400;line-height:1.45;text-transform:none}
+.activity-editor{min-height:90px;resize:vertical}.activity-counter{text-align:right}
 :root{--pink:#ED8023;--orange:#ED8023}
 .pink,.news-read-more,.map-section h2{color:#ED8023}
 .shape-pink{background:#ED8023}
