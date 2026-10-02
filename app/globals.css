@@ -34,6 +34,7 @@
 .content-form textarea.rich-text-editor{min-height:260px;line-height:1.55}
 .field-help{display:block;color:#62626a;font-size:12px;font-weight:400;line-height:1.45;text-transform:none}
 .activity-editor{min-height:90px;resize:vertical}.activity-counter{text-align:right}
+.activity-title ul{margin:8px 0 0;padding-left:22px}.activity-title li{margin:4px 0}.activity-title p{margin:6px 0}
 :root{--pink:#ED8023;--orange:#ED8023}
 .pink,.news-read-more,.map-section h2{color:#ED8023}
 .shape-pink{background:#ED8023}
