@@ -1,4 +1,4 @@
-export type Field = { name: string; label: string; type: "text" | "url" | "textarea" | "date" | "time" | "file" | "number"; required?: boolean };
+export type Field = { name: string; label: string; type: "text" | "url" | "textarea" | "date" | "time" | "file" | "number"; required?: boolean; maxLength?: number };
 export const definitions: Record<string, Field[]> = {
   news: [
     { name: "title", label: "Título", type: "text", required: true },
@@ -26,7 +26,7 @@ export const definitions: Record<string, Field[]> = {
   schedule_entries: [
     { name: "event_date", label: "Fecha", type: "date", required: true },
     { name: "event_time", label: "Hora", type: "time", required: true },
-    { name: "title", label: "Actividad", type: "text", required: true },
+    { name: "title", label: "Actividad", type: "text", required: true, maxLength: 100 },
     { name: "venue", label: "Ubicación", type: "text", required: true },
   ],
   venue_maps: [
